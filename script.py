@@ -20,17 +20,19 @@ platform = sdk.platform()
 
 # Be sure to reset the password in Sandbox. It's different from your dev account credentials.
 platform.login(username, extension, password)
-# r = platform.get(f"/restapi/v1.0/account/{accountId}").text()
-# print(json.loads(r))
-res = json.loads(platform.get('/restapi/v1.0/account/~/extension/~/message-store').text())
+res = json.loads(platform.get("/restapi/v1.0/account/~/extension/~/message-store").text())
 
-message = ""
+message_uri = ""
 
-# Get message from response
+# Get first message from response
 for i in res["records"][0]["attachments"]:
-    message += f"{i['uri']}"
+    print(i)
+    message_uri = i["uri"]
 
-print(message)
-# print(json.loads(resp)["records"][0]["attachments"][1])
-# for record in resp.text().records:
-#     print(record)
+bearer_token = platform._auth_header()
+voicemail = platform.get(message_uri)
+
+
+print(bearer_token, message_uri, voicemail)
+
+
