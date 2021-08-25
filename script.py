@@ -42,6 +42,7 @@ if len(res["records"]):
     # Write audio data to .mp3 file
     with open(mp3_file, "wb") as f:
         f.write(voicemail)
+        f.close()
 
     # Upload file to AWS S3 bucket and allow public read access
     client = boto3.client("s3", aws_access_key_id=aws_access_key, aws_secret_access_key=aws_secret_key)
