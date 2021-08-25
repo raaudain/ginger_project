@@ -1,2 +1,2 @@
 # ginger_project
-Python script to download voicemail from RingCentral and upload it to AWS
+Python script that downloads latest voicemail from RingCentral and uploads it to AWS.
